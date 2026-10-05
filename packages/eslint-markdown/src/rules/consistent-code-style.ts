@@ -159,6 +159,27 @@ export default {
         const currentCodeStyle = getCodeStyle(currentCodeFenceChar);
         const nodeStartLineIndex = start.line - 1;
         const nodeEndLineIndex = end.line - 1;
+        const codeStyleLoc = {
+          start,
+          end: {
+            line: start.line,
+            column: (() => {
+              const nodeStartLineText = lines[nodeStartLineIndex];
+
+              if (currentCodeStyle === 'indent') {
+                return nodeStartLineText.length + 1;
+              }
+
+              let { column } = start;
+
+              while (nodeStartLineText[column - 1] === currentCodeFenceChar) {
+                column++;
+              }
+
+              return column;
+            })(),
+          },
+        };
 
         if (codeStyle === null) {
           codeStyle = currentCodeStyle;
@@ -166,27 +187,7 @@ export default {
 
         if (codeStyle !== currentCodeStyle) {
           context.report({
-            loc: {
-              start,
-              end: {
-                line: start.line,
-                column: (() => {
-                  const nodeStartLineText = lines[nodeStartLineIndex];
-
-                  if (currentCodeStyle === 'indent') {
-                    return nodeStartLineText.length + 1;
-                  }
-
-                  let { column } = start;
-
-                  while (nodeStartLineText[column - 1] === currentCodeFenceChar) {
-                    column++;
-                  }
-
-                  return column;
-                })(),
-              },
-            },
+            loc: codeStyleLoc,
 
             messageId: 'style',
 
@@ -220,7 +221,7 @@ export default {
             }
 
             context.report({
-              node,
+              loc: codeStyleLoc,
 
               messageId: 'blankLineAbove',
 
@@ -258,7 +259,13 @@ export default {
             }
 
             context.report({
-              node,
+              loc: {
+                start: {
+                  line: end.line,
+                  column: lines[nodeEndLineIndex].indexOf(currentCodeFenceChar) + 1,
+                },
+                end,
+              },
 
               messageId: 'blankLineBelow',
 

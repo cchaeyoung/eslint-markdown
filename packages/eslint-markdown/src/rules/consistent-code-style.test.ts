@@ -679,9 +679,9 @@ code block 2
 
     // option: `blankLineAbove`
     {
-      name: '`blankLineAbove` option',
+      name: '`blankLineAbove` option - fenced code with language',
       code: `Paragraph
-\`\`\`
+\`\`\`js
 code block 1
 \`\`\``,
       options: [{ blankLineAbove: 1 }],
@@ -690,7 +690,7 @@ code block 1
           messageId: 'blankLineAbove',
           line: 2,
           column: 1,
-          endLine: 4,
+          endLine: 2,
           endColumn: 4,
           data: { blankLineAbove: 1 },
         },
@@ -708,7 +708,7 @@ code block 1
           messageId: 'blankLineAbove',
           line: 2,
           column: 1,
-          endLine: 4,
+          endLine: 2,
           endColumn: 4,
           data: { blankLineAbove: 3 },
         },
@@ -726,7 +726,7 @@ Paragraph`,
       errors: [
         {
           messageId: 'blankLineBelow',
-          line: 1,
+          line: 3,
           column: 1,
           endLine: 3,
           endColumn: 4,
@@ -744,7 +744,7 @@ Paragraph`,
       errors: [
         {
           messageId: 'blankLineBelow',
-          line: 1,
+          line: 3,
           column: 1,
           endLine: 3,
           endColumn: 4,
@@ -772,13 +772,13 @@ Paragraph`,
           messageId: 'blankLineAbove',
           line: 2,
           column: 1,
-          endLine: 4,
+          endLine: 2,
           endColumn: 4,
           data: { blankLineAbove: 1 },
         },
         {
           messageId: 'blankLineBelow',
-          line: 2,
+          line: 4,
           column: 1,
           endLine: 4,
           endColumn: 4,
@@ -806,13 +806,13 @@ Paragraph`,
           messageId: 'blankLineAbove',
           line: 3,
           column: 1,
-          endLine: 5,
+          endLine: 3,
           endColumn: 4,
           data: { blankLineAbove: 2 },
         },
         {
           messageId: 'blankLineBelow',
-          line: 3,
+          line: 5,
           column: 1,
           endLine: 5,
           endColumn: 4,
@@ -839,7 +839,7 @@ Paragraph`,
           messageId: 'blankLineAbove',
           line: 2,
           column: 3,
-          endLine: 4,
+          endLine: 2,
           endColumn: 6,
           data: { blankLineAbove: 1 },
         },
@@ -861,10 +861,42 @@ Paragraph`,
       errors: [
         {
           messageId: 'blankLineBelow',
-          line: 2,
+          line: 4,
           column: 3,
           endLine: 4,
           endColumn: 6,
+          data: { blankLineBelow: 1 },
+        },
+      ],
+    },
+    {
+      name: '`blankLineAbove` and `blankLineBelow` options - with a tilde fence',
+      code: `Paragraph
+~~~
+const value = 1;
+~~~
+Paragraph`,
+      options: [
+        {
+          blankLineAbove: 1,
+          blankLineBelow: 1,
+        },
+      ],
+      errors: [
+        {
+          messageId: 'blankLineAbove',
+          line: 2,
+          column: 1,
+          endLine: 2,
+          endColumn: 4,
+          data: { blankLineAbove: 1 },
+        },
+        {
+          messageId: 'blankLineBelow',
+          line: 4,
+          column: 1,
+          endLine: 4,
+          endColumn: 4,
           data: { blankLineBelow: 1 },
         },
       ],
