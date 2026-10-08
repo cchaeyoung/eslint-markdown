@@ -679,9 +679,9 @@ code block 2
 
     // option: `blankLineAbove`
     {
-      name: '`blankLineAbove` option - fenced code with language',
+      name: '`blankLineAbove` option',
       code: `Paragraph
-\`\`\`js
+\`\`\`
 code block 1
 \`\`\``,
       options: [{ blankLineAbove: 1 }],
@@ -711,6 +711,24 @@ code block 1
           endLine: 2,
           endColumn: 4,
           data: { blankLineAbove: 3 },
+        },
+      ],
+    },
+    {
+      name: '`blankLineAbove` option - fenced code with language',
+      code: `Paragraph
+\`\`\`js
+code block 1
+\`\`\``,
+      options: [{ blankLineAbove: 1 }],
+      errors: [
+        {
+          messageId: 'blankLineAbove',
+          line: 2,
+          column: 1,
+          endLine: 2,
+          endColumn: 4,
+          data: { blankLineAbove: 1 },
         },
       ],
     },
