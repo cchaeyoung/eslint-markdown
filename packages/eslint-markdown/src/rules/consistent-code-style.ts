@@ -159,7 +159,7 @@ export default {
         const currentCodeStyle = getCodeStyle(currentCodeFenceChar);
         const nodeStartLineIndex = start.line - 1;
         const nodeEndLineIndex = end.line - 1;
-        const codeStyleLoc = {
+        const leadingCodeFenceLoc = {
           start,
           end: {
             line: start.line,
@@ -180,6 +180,13 @@ export default {
             })(),
           },
         };
+        const trailingCodeFenceLoc = {
+          start: {
+            line: end.line,
+            column: lines[nodeEndLineIndex].indexOf(currentCodeFenceChar) + 1,
+          },
+          end,
+        };
 
         if (codeStyle === null) {
           codeStyle = currentCodeStyle;
@@ -187,7 +194,7 @@ export default {
 
         if (codeStyle !== currentCodeStyle) {
           context.report({
-            loc: codeStyleLoc,
+            loc: leadingCodeFenceLoc,
 
             messageId: 'style',
 
@@ -221,7 +228,7 @@ export default {
             }
 
             context.report({
-              loc: codeStyleLoc,
+              loc: leadingCodeFenceLoc,
 
               messageId: 'blankLineAbove',
 
@@ -259,13 +266,7 @@ export default {
             }
 
             context.report({
-              loc: {
-                start: {
-                  line: end.line,
-                  column: lines[nodeEndLineIndex].indexOf(currentCodeFenceChar) + 1,
-                },
-                end,
-              },
+              loc: trailingCodeFenceLoc,
 
               messageId: 'blankLineBelow',
 
