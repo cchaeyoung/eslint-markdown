@@ -159,13 +159,13 @@ export default {
         const currentCodeStyle = getCodeStyle(currentCodeFenceChar);
         const nodeStartLineIndex = start.line - 1;
         const nodeEndLineIndex = end.line - 1;
+        const nodeStartLineText = lines[nodeStartLineIndex];
+        const nodeEndLineText = lines[nodeEndLineIndex];
         const leadingCodeFenceLoc = {
           start,
           end: {
             line: start.line,
             column: (() => {
-              const nodeStartLineText = lines[nodeStartLineIndex];
-
               if (currentCodeStyle === 'indent') {
                 return nodeStartLineText.length + 1;
               }
@@ -180,12 +180,25 @@ export default {
             })(),
           },
         };
+        const trailingCodeFenceStartColumn =
+          nodeEndLineText.indexOf(currentCodeFenceChar) + 1;
         const trailingCodeFenceLoc = {
           start: {
             line: end.line,
-            column: lines[nodeEndLineIndex].indexOf(currentCodeFenceChar) + 1,
+            column: trailingCodeFenceStartColumn,
           },
-          end,
+          end: {
+            line: end.line,
+            column: (() => {
+              let column = trailingCodeFenceStartColumn;
+
+              while (nodeEndLineText[column - 1] === currentCodeFenceChar) {
+                column++;
+              }
+
+              return column;
+            })(),
+          },
         };
 
         if (codeStyle === null) {

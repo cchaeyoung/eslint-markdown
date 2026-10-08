@@ -770,6 +770,141 @@ Paragraph`,
         },
       ],
     },
+    {
+      name: '`blankLineBelow` option - closing backtick fence indented by three spaces',
+      code: '```\ncode block 1\n   ```\nParagraph',
+      options: [{ blankLineBelow: 1 }],
+      errors: [
+        {
+          messageId: 'blankLineBelow',
+          line: 3,
+          column: 4,
+          endLine: 3,
+          endColumn: 7,
+          data: { blankLineBelow: 1 },
+        },
+      ],
+    },
+    {
+      name: '`blankLineBelow` option - closing backtick fence followed by one space',
+      code: '```\ncode block 1\n``` \nParagraph',
+      options: [{ blankLineBelow: 1 }],
+      errors: [
+        {
+          messageId: 'blankLineBelow',
+          line: 3,
+          column: 1,
+          endLine: 3,
+          endColumn: 4,
+          data: { blankLineBelow: 1 },
+        },
+      ],
+    },
+    {
+      name: '`blankLineBelow` option - closing backtick fence followed by three spaces',
+      code: '```\ncode block 1\n```   \nParagraph',
+      options: [{ blankLineBelow: 1 }],
+      errors: [
+        {
+          messageId: 'blankLineBelow',
+          line: 3,
+          column: 1,
+          endLine: 3,
+          endColumn: 4,
+          data: { blankLineBelow: 1 },
+        },
+      ],
+    },
+    {
+      name: '`blankLineBelow` option - closing backtick fence followed by one tab',
+      code: '```\ncode block 1\n```\t\nParagraph',
+      options: [{ blankLineBelow: 1 }],
+      errors: [
+        {
+          messageId: 'blankLineBelow',
+          line: 3,
+          column: 1,
+          endLine: 3,
+          endColumn: 4,
+          data: { blankLineBelow: 1 },
+        },
+      ],
+    },
+    {
+      name: '`blankLineBelow` option - closing backtick fence followed by two tabs',
+      code: '```\ncode block 1\n```\t\t\nParagraph',
+      options: [{ blankLineBelow: 1 }],
+      errors: [
+        {
+          messageId: 'blankLineBelow',
+          line: 3,
+          column: 1,
+          endLine: 3,
+          endColumn: 4,
+          data: { blankLineBelow: 1 },
+        },
+      ],
+    },
+    {
+      name: '`blankLineBelow` option - closing backtick fence followed by mixed spaces and tabs',
+      code: '```\ncode block 1\n``` \t  \t\nParagraph',
+      options: [{ blankLineBelow: 1 }],
+      errors: [
+        {
+          messageId: 'blankLineBelow',
+          line: 3,
+          column: 1,
+          endLine: 3,
+          endColumn: 4,
+          data: { blankLineBelow: 1 },
+        },
+      ],
+    },
+    {
+      name: '`blankLineBelow` option - closing tilde fence followed by three spaces',
+      code: '~~~\ncode block 1\n~~~   \nParagraph',
+      options: [{ blankLineBelow: 1 }],
+      errors: [
+        {
+          messageId: 'blankLineBelow',
+          line: 3,
+          column: 1,
+          endLine: 3,
+          endColumn: 4,
+          data: { blankLineBelow: 1 },
+        },
+      ],
+    },
+    {
+      name: '`blankLineBelow` option - longer closing tilde fence followed by two tabs',
+      code: '~~~\ncode block 1\n~~~~~\t\t\nParagraph',
+      options: [{ blankLineBelow: 1 }],
+      errors: [
+        {
+          messageId: 'blankLineBelow',
+          line: 3,
+          column: 1,
+          endLine: 3,
+          endColumn: 6,
+          data: { blankLineBelow: 1 },
+        },
+      ],
+    },
+    {
+      name: '`blankLineBelow` option - blockquoted closing backtick fence followed by mixed tabs and spaces',
+      code: '> ```\n> code block 1\n> ```\t \t  \n> Paragraph',
+      options: [{ blankLineBelow: 1 }],
+      errors: [
+        {
+          messageId: 'blankLineBelow',
+          line: 3,
+          column: 3,
+          endLine: 3,
+          endColumn: 6,
+          data: { blankLineBelow: 1 },
+        },
+      ],
+    },
 
     // option: mixed
     {
