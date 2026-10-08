@@ -773,7 +773,7 @@ Paragraph`,
       ],
     },
     {
-      name: '`blankLineBelow` option - empty tilde-fenced code block reports only the closing fence',
+      name: '`blankLineBelow` option - empty code block',
       code: `~~~
 ~~~
 Paragraph`,
@@ -790,7 +790,7 @@ Paragraph`,
       ],
     },
     {
-      name: '`blankLineBelow` option - closing backtick fence indented by three spaces',
+      name: '`blankLineBelow` option - indented last line',
       code: '```\ncode block 1\n   ```\nParagraph',
       options: [{ blankLineBelow: 1 }],
       errors: [
@@ -805,7 +805,7 @@ Paragraph`,
       ],
     },
     {
-      name: '`blankLineBelow` option - closing backtick fence followed by one space',
+      name: '`blankLineBelow` option - one trailing space',
       code: '```\ncode block 1\n``` \nParagraph',
       options: [{ blankLineBelow: 1 }],
       errors: [
@@ -820,7 +820,7 @@ Paragraph`,
       ],
     },
     {
-      name: '`blankLineBelow` option - closing backtick fence followed by three spaces',
+      name: '`blankLineBelow` option - three trailing spaces',
       code: '```\ncode block 1\n```   \nParagraph',
       options: [{ blankLineBelow: 1 }],
       errors: [
@@ -835,7 +835,7 @@ Paragraph`,
       ],
     },
     {
-      name: '`blankLineBelow` option - closing backtick fence followed by one tab',
+      name: '`blankLineBelow` option - one trailing tab',
       code: '```\ncode block 1\n```\t\nParagraph',
       options: [{ blankLineBelow: 1 }],
       errors: [
@@ -850,7 +850,7 @@ Paragraph`,
       ],
     },
     {
-      name: '`blankLineBelow` option - closing backtick fence followed by two tabs',
+      name: '`blankLineBelow` option - two trailing tabs',
       code: '```\ncode block 1\n```\t\t\nParagraph',
       options: [{ blankLineBelow: 1 }],
       errors: [
@@ -865,7 +865,7 @@ Paragraph`,
       ],
     },
     {
-      name: '`blankLineBelow` option - closing backtick fence followed by mixed spaces and tabs',
+      name: '`blankLineBelow` option - mixed trailing spaces and tabs',
       code: '```\ncode block 1\n``` \t  \t\nParagraph',
       options: [{ blankLineBelow: 1 }],
       errors: [
@@ -880,7 +880,7 @@ Paragraph`,
       ],
     },
     {
-      name: '`blankLineBelow` option - closing tilde fence followed by three spaces',
+      name: '`blankLineBelow` option - tilde-fenced code with trailing spaces',
       code: '~~~\ncode block 1\n~~~   \nParagraph',
       options: [{ blankLineBelow: 1 }],
       errors: [
@@ -895,7 +895,7 @@ Paragraph`,
       ],
     },
     {
-      name: '`blankLineBelow` option - longer closing tilde fence followed by two tabs',
+      name: '`blankLineBelow` option - longer tilde fence with trailing tabs',
       code: '~~~\ncode block 1\n~~~~~\t\t\nParagraph',
       options: [{ blankLineBelow: 1 }],
       errors: [
@@ -910,7 +910,7 @@ Paragraph`,
       ],
     },
     {
-      name: '`blankLineBelow` option - blockquoted closing backtick fence followed by mixed tabs and spaces',
+      name: '`blankLineBelow` option - blockquoted code with trailing tabs and spaces',
       code: '> ```\n> code block 1\n> ```\t \t  \n> Paragraph',
       options: [{ blankLineBelow: 1 }],
       errors: [
@@ -925,7 +925,7 @@ Paragraph`,
       ],
     },
     {
-      name: '`blankLineBelow` option - blockquoted tilde fence without a closing fence',
+      name: '`blankLineBelow` option - unclosed blockquoted code',
       code: '> ~~~\n> code\nParagraph',
       options: [{ blankLineBelow: 1 }],
       errors: [
@@ -940,7 +940,7 @@ Paragraph`,
       ],
     },
     {
-      name: '`blankLineBelow` option - blockquoted tilde fence without a closing fence using CRLF line endings',
+      name: '`blankLineBelow` option - unclosed blockquoted code with CRLF line endings',
       code: '> ~~~\r\n> code\r\nParagraph',
       options: [{ blankLineBelow: 1 }],
       errors: [
@@ -955,7 +955,7 @@ Paragraph`,
       ],
     },
     {
-      name: '`blankLineBelow` option - unclosed blockquoted tilde fence highlights the entire last line containing a tilde',
+      name: '`blankLineBelow` option - unclosed blockquoted code containing a tilde',
       code: '> ~~~\n> code ~ content\nParagraph',
       options: [{ blankLineBelow: 1 }],
       errors: [
@@ -970,7 +970,7 @@ Paragraph`,
       ],
     },
     {
-      name: '`blankLineBelow` option - unclosed tilde fence in a list ending on a blank line',
+      name: '`blankLineBelow` option - unclosed code in a list',
       code: '- ~~~\n  code\n\nParagraph',
       options: [{ blankLineBelow: 2 }],
       errors: [
@@ -985,7 +985,7 @@ Paragraph`,
       ],
     },
     {
-      name: '`blankLineBelow` option - empty blockquoted tilde fence without a closing fence',
+      name: '`blankLineBelow` option - empty unclosed blockquoted code',
       code: '> ~~~\nParagraph',
       options: [{ blankLineBelow: 1 }],
       errors: [
