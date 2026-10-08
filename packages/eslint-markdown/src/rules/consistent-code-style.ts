@@ -179,27 +179,7 @@ export default {
               return column;
             })(),
           },
-        };
-        const trailingCodeFenceStartColumn =
-          nodeEndLineText.indexOf(currentCodeFenceChar) + 1;
-        const trailingCodeFenceLoc = {
-          start: {
-            line: end.line,
-            column: trailingCodeFenceStartColumn,
-          },
-          end: {
-            line: end.line,
-            column: (() => {
-              let column = trailingCodeFenceStartColumn;
-
-              while (nodeEndLineText[column - 1] === currentCodeFenceChar) {
-                column++;
-              }
-
-              return column;
-            })(),
-          },
-        };
+        } as const;
 
         if (codeStyle === null) {
           codeStyle = currentCodeStyle;
@@ -279,7 +259,18 @@ export default {
             }
 
             context.report({
-              loc: trailingCodeFenceLoc,
+              // Report the last line of the code block, as highlighting only the trailing
+              // code fence characters involves many edge cases that cannot be handled reliably.
+              loc: {
+                start: {
+                  line: end.line,
+                  column: 1,
+                },
+                end: {
+                  line: end.line,
+                  column: nodeEndLineText.length + 1,
+                },
+              },
 
               messageId: 'blankLineBelow',
 
